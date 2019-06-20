@@ -26,7 +26,7 @@ cd "$work_dir"
 yarn init -y
 git init
 yarn add -D parcel-bundler eslint jest
-sed -i 's,\"MIT\",\"MIT\"\,\n\t"scripts": {\n\t\t"start": "parcel serve public/index.html --port 8000"\n\t},g' package.json
+sed -i 's,\"MIT\",\"MIT\"\,\n\t"scripts": {\n\t\t"start": "parcel serve public/index.html --open --port 8000"\n\t},g' package.json
 mkdir public
 cp ~/bin/templates/index.html ./public/index.html
 cp ~/bin/templates/.gitignore ./.gitignore
