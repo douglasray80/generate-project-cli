@@ -1,0 +1,33 @@
+#!/usr/bin/bash
+. ~/bin/includes/flags-declares.sh
+. ~/bin/includes/colors.sh
+
+# WORK_DIR=${2:-.}
+
+# if [ "$1" == "frontend" ];
+# then
+#     echo Creating frontend project...
+# elif [ "$1" == "backend" ];
+# then
+#     echo Creating backend project...
+# else
+#     echo Creating basic project...
+#     mkdir $WORK_DIR
+# fi
+
+variables["-d"]="work_dir";
+variables["--directory"]="work_dir";
+
+. ~/bin/includes/flags-arguments.sh
+
+echo -e $txtgrn"$work_dir"$txtrst;
+mkdir "$work_dir"
+cd "$work_dir"
+yarn init -y
+git init
+yarn add -D parcel-bundler eslint jest
+sed -i 's,\"MIT\",\"MIT\"\,\n\t"scripts": {\n\t\t"start": "parcel serve public/index.html --port 8000"\n\t},g' package.json
+mkdir public
+cp ~/bin/templates/index.html ./public/index.html
+cp ~/bin/templates/.gitignore ./.gitignore
+touch public/styles.css public/app.js
